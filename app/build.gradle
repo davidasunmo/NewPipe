@@ -125,7 +125,7 @@ ext {
     androidxWorkVersion = '2.8.1'
 
     stateSaverVersion = '1.4.1'
-    exoPlayerVersion = '2.18.7'
+    exoPlayerVersion = '2.19.1'
     googleAutoServiceVersion = '1.1.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'

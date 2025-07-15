@@ -953,24 +953,6 @@ public final class Player implements PlaybackListener, Listener {
 
     //endregion
 
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playback states
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Playback states
-    @Override
-    public void onPlayWhenReadyChanged(final boolean playWhenReady, final int reason) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPlayWhenReadyChanged() called with: "
-                    + "playWhenReady = [" + playWhenReady + "], "
-                    + "reason = [" + reason + "]");
-        }
-        final int playbackState = exoPlayerIsNull()
-                ? com.google.android.exoplayer2.Player.STATE_IDLE
-                : simpleExoPlayer.getPlaybackState();
-        updatePlaybackState(playWhenReady, playbackState);
-    }
-
     public static String exoplayerStateToString(final int playbackState) {
         return switch (playbackState) {
             case com.google.android.exoplayer2.Player.STATE_IDLE -> // 1
@@ -999,6 +981,24 @@ public final class Player implements PlaybackListener, Listener {
         };
     }
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback states
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Playback states
+    @Override
+    public void onPlayWhenReadyChanged(final boolean playWhenReady, final int reason) {
+        if (DEBUG) {
+            Log.d(TAG, "ExoPlayer - onPlayWhenReadyChanged() called with: "
+                    + "playWhenReady = [" + playWhenReady + "], "
+                    + "reason = [" + reason + "]");
+        }
+        final int playbackState = exoPlayerIsNull()
+                ? com.google.android.exoplayer2.Player.STATE_IDLE
+                : simpleExoPlayer.getPlaybackState();
+        updatePlaybackState(playWhenReady, playbackState);
+    }
+
     @Override
     public void onPlaybackStateChanged(final int playbackState) {
         if (DEBUG) {
@@ -1012,7 +1012,7 @@ public final class Player implements PlaybackListener, Listener {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - updatePlaybackState() called with: "
                     + "playWhenReady = [" + playWhenReady + "], "
-                    + "playbackState = [" + playbackState + "]");
+                    + "playbackState = [" + exoplayerStateToString(playbackState) + "]");
         }
 
         if (currentState == STATE_PAUSED_SEEK) {
